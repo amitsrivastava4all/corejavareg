@@ -1,12 +1,14 @@
 strictfp class DataTypes{
-    
+    void show(){
+        float w = 90.10f;
+    }
     public  static void main(String[] args) {
         boolean x = true;
         String b = "नमस्कार जावा";
         System.out.println(b);
         char a = 'A'; // UNICODE
         long q;
-        float e = 90.20f;
+        float e = 90.20F;
         double tt= 90.20;
         
         
