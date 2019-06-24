@@ -1,6 +1,14 @@
 abstract  class Insurance{
+	int x;
+	int y ;
+	//static final int z;
+	Insurance(){
+		x = 100;
+		y = 200;
+	//	z = 1000;
+	}
 	void withDraw() {
-		
+		System.out.println("X is "+x+" and y is "+y);
 	}
 	abstract void mature();
 	abstract void pay();
