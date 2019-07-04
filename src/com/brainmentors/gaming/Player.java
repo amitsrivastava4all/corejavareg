@@ -1,16 +1,13 @@
 package com.brainmentors.gaming;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class Player implements GameConstants {
-	private int x;
-	private int y;
-	private int w;
-	private int h;
-	private int speed;
-	private BufferedImage image;
+public class Player extends Sprite implements GameConstants {
+	private ArrayList<Bullet> bullets = new ArrayList<>();
+	private int force;
+	private boolean isJumped;
 	public Player() {
+		isJumped = false;
 		speed = 5;
 		x = 100;
 		h = w = 100;
@@ -18,12 +15,41 @@ public class Player implements GameConstants {
 		image=  ImageLoader.loadImage(PLAYER_IMG);
 			
 	}
-	public void move() {
-		x+=speed;
-		System.out.println("X is "+x);
+	
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
 	}
-	public void drawPlayer(Graphics g) {
-		g.drawImage(image, x,y,w,h,null);
+
+	public void setBullets(ArrayList<Bullet> bullets) {
+		this.bullets = bullets;
 	}
+
+	public void fire() {
+		Bullet bullet = new Bullet((x+this.getW()/2+10), (y+(this.getH()/2-30)));
+		bullets.add(bullet);
+	}
+	
+	public void jump() {
+		if(!isJumped) {
+		force = DEFAULT_FORCE;
+		y = y + force;
+		isJumped = true;
+		}
+	}
+	
+	public void fall() {
+		if(y>=FLOOR-h) {
+			isJumped = false;
+			y = FLOOR - h;
+		}
+		else {
+		force  = force + GRAVITY;
+		y = y + force;
+		}
+	}
+	
+
+	
+	
 
 }
